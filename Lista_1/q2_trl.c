@@ -4,10 +4,24 @@ int main(void) {
   int x, i, j;
   
   while(1){
+    int cont = 1, y = 1, nun = 1;
+
     scanf("%d", &x);
     
+    for (i = 0; i < x; i++){
+      nun *= 4;
+    }
+    for (i = 0; i < x; i++){
+      if(nun > 9){
+        nun /= 10;
+        cont ++;
+      }
+        else{
+        break;
+      }
+    }
+    
     int matriz[x][x];
-    int y = 1;
 
     if (x == 0){
       break;
@@ -30,7 +44,7 @@ int main(void) {
       
       for (i = 0; i < x; i++){
         for (j = 0; j < x; j++){
-          printf("%*d", 3, matriz[i][j]);
+          printf("%*d", cont-1, matriz[i][j]);
           if(j < x - 1){
           printf(" ");
         }
