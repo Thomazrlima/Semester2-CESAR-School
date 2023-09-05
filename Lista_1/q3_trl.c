@@ -8,7 +8,7 @@ int main(void) {
 
     scanf("%d", &x);
     
-    for (i = 0; i < x; i++){
+    for (i = 1; i < x; i++){
       nun *= 4;
     }
     for (i = 0; i < x; i++){
@@ -44,7 +44,7 @@ int main(void) {
       
       for (i = 0; i < x; i++){
         for (j = 0; j < x; j++){
-          printf("%*d", cont-1, matriz[i][j]);
+          printf("%*d", cont, matriz[i][j]);
           if(j < x - 1){
           printf(" ");
         }
