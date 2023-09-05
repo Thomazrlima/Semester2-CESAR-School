@@ -6,7 +6,7 @@ int main(void) {
   
   scanf("%d %d %d %d", &G, &A, &M, &C);
   
-  int matriza[G][A], matrizb[A][M], matrizc[M][C];
+  int matriza[G][A], matrizb[A][M], matrizc[M][C], maior[C];
 
   for (i = 0; i < G; i++){
     for (j = 0; j < A; j++){
@@ -40,15 +40,41 @@ int main(void) {
       fim[i][j] = 0;
       for (k = 0; k < M; k++){
         fim[i][j] += result[i][k]*matrizc[k][j];
+        }
+      }
+  }
+
+  for(i = 0; i < C; i++){
+    maior[i] = fim[0][i];
+    for (j = 0; j < C; j++){
+      if(fim[j][i] > maior[i]){
+        maior[i] = fim[j][i];
       }
     }
   }
 
+  int spc, place;
+
+  for(i=0; i < C; i++){
+    place = maior[i];
+    spc = 0;
+    while(place != 0){
+      spc++;
+      place/= 10;
+    }
+    maior[i] = spc;
+  }
+
+  
   for (i = 0; i < G; i++){
     for (j = 0; j < C; j++){
-      printf("%*d", 3, fim[i][j]);
+      printf("%*d", maior[j], fim[i][j]);
+      if(j < C-1){
+        printf(" ");
+      }else{
+        printf("\n");
+      }
     }
-    printf("\n");
   }
   
   return 0;
