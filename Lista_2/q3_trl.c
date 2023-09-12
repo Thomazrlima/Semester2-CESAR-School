@@ -1,29 +1,29 @@
 #include <stdio.h>
 
-int comp(int Al, int Be, int A[Al], int B[Be]);
+int comp(int A, int B, int cardA[A], int cardB[B]);
 
 int main(void) {
   while(1){
-    int Al, Be, j, A[Al], B[Be];
-      scanf("%d %d", &Al, &Be);
-      if (Al == 0 && Be == 0 &&){
+    int A, B, j, cardA[A], cardB[B];
+      scanf("%d %d", &A, &B);
+      if (A == 0 && B == 0 &&){
         break;
       }
-      for(j = 0; j < Al; j++){
-        scanf("%d", &A[i]);
+      for(j = 0; j < A; j++){
+        scanf("%d", &cardA[i]);
       }
-      for(j = 0; j < Al; j++){
-        scanf("%d", &A[i]);
+      for(j = 0; j < B; j++){
+        scanf("%d", &cardB[i]);
       }
-      comp(Al, Be, A, B);
+      comp(A, B, A, cardB);
   }
   return 0;
 }
 
-int comp(int Al, int Be){
-  int i, k, maior = Al;
-  if (Al < Be){
-    val = Be
+int comp(int A, int B){
+  int i, k, maior = A;
+  if (A < B){
+    val = B
   }
   for(i = 0; i < val; i++){
       
