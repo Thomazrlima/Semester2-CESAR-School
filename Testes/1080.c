@@ -14,5 +14,5 @@ int main(void) {
     }
   }
   printf("%d \n %d", maior, lugar);
-  return 0;
+  return ;
 }
