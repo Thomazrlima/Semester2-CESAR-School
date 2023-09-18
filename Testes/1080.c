@@ -2,17 +2,15 @@
 
 int main(void) {
   
-  int vetor[100], i, maior, lugar;
+  int vetor[100], i, maior = 0, lugar;
   
   for(i = 0; i < 100; i++){
     scanf("%d", &vetor[i]);
-  }
-  for(i = 1; i < 100; i++){
-    if(vetor[i] > vetor[i-1]){
+    if(vetor[i] > maior){
       maior = vetor[i];
-      lugar = i;
+      lugar = i+1;
     }
   }
-  printf("%d \n %d", maior, lugar);
+  printf("%d\n%d\n", maior, lugar);
   return 0;
 }
