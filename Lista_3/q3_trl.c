@@ -22,7 +22,7 @@ int main(void) {
         
       if(var < menor){
         menor = var;
-        result = i+1;
+        result = k+1;
       }
       
     }
