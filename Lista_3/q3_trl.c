@@ -12,8 +12,6 @@ int main(void) {
     
     scanf("%d", &N);
     scanf("%d %d", &x, &y);
-    
-    
 
     for(k = 0; k < N; k++){
       scanf("%d %d", &x2, &y2);
