@@ -6,7 +6,7 @@ enum tabela {Spo = 1, Bot, Pal, Gre, Bra, Flu, Apr, Fla, For, Amg};
 int main(void) {
   enum tabela input;
   printf("Digite a posição na tabela que você deseja ver: ");
-  scanf("%d", ((int*)&input));
+  scanf("%d", &input);
 
   switch (input) {
   case Spo:
