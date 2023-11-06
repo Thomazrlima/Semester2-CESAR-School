@@ -22,6 +22,14 @@ int main(void) {
       adicionar(&head,scanf("%s", nome), N);
   }
 
+  struct node *n = head;
+  while(n!= NULL){
+  if(strcmp(n->nome, (n+1)->nome) > 0){
+    char aux1 = nome[i];
+    nome[i] = nome[i+1];
+    nome[i+1] = aux1;
+    }
+  }
 }
 
 void add_node(struct node **head, char nome,int i){
