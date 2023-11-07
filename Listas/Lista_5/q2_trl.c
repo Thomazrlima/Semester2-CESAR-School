@@ -7,7 +7,6 @@ struct node{
   struct node *next;
 };
 
-void organizar(struct node *head);
 void adicionar(struct node **head, char nome, int i;
 
 
