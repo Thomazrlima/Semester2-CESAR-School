@@ -43,7 +43,7 @@ void adicionar(struct node **head, char *nome){
     else{
     while(n->next != NULL && strcmp(novo->nome, nome) < 0){
         if (strcmp(novo->nome, nome) == 0){
-            free(novo);
+          free(novo);
         }else{
           n = n->next;
         }
