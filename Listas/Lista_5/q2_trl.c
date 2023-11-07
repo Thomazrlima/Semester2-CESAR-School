@@ -9,6 +9,7 @@ struct node{
 
 void printList(struct node *head);
 void adicionar(struct node **head, char *nome);
+void deletar(struct node *head, char *nome);
 
 int main(void) {
   int N, i;
@@ -21,6 +22,8 @@ int main(void) {
     scanf("%s", nome);
     adicionar(&head, nome);
   }
+  
+  deletar(&head, *nome);
   printList(head);
 
   return 0;
@@ -42,10 +45,7 @@ void adicionar(struct node **head, char *nome){
     }
     else{
     while(n->next != NULL && strcmp(novo->nome, nome) < 0){
-        if (strcmp(novo->nome, nome) == 0){
-          free(novo);
-        }else{
-          n = n->next;
+      n = n->next;
         }
     }
     if(n->next == NULL){
@@ -55,7 +55,6 @@ void adicionar(struct node **head, char *nome){
       novo->next = n->next;
       n->next = novo;
      } 
-   }
   }
 }
 
@@ -66,4 +65,18 @@ void printList(struct node *head){
     n = n -> next;
   }
   printf("\n");
+}
+
+void deletar(struct node *head, char *nome){
+  struct node *n = head;
+  struct node *temp;
+  struct node *novo = (struct node *)malloc(sizeof(struct node));
+
+  while(n->next->next != NULL && (strcmp(novo->nome, n->next->nome) == 0)){
+    n = n->next;
+  }
+
+  temp = n->next; 
+  n->next = n->next->next;
+  free(temp);
 }
