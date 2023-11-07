@@ -35,6 +35,12 @@ void adicionar(struct node **head, char *nome){
      *head = novo;
      novo->next = NULL;
   }else{
+
+    if(strcmp(novo->nome, n->nome) < 0){
+      novo->next = n;
+      *head = novo;
+    }
+    else{
     while(n->next != NULL && strcmp(novo->nome, nome) < 0){
         if (strcmp(novo->nome, nome) == 0){
             free(novo);
@@ -50,6 +56,7 @@ void adicionar(struct node **head, char *nome){
       n->next = novo;
      } 
    }
+  }
 }
 
 void printList(struct node *head){
