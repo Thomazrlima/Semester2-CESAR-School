@@ -24,6 +24,38 @@ Livro adicionar(struct node **head, Livro livro, char *var) {
       n->next = novo;
     } 
   }
+  printf("%s", livro.Titulo);
+}
+
+
+Livro deletar(struct node **head, char *var) {
+  struct node *n = *head;
+  struct node *temp;
+
+  if (*head == NULL) {
+    printf("Lista vazia.\n");
+    return;
+  }
+
+  if (strcmp((*head)->livro.Titulo, var) == 0) {
+    temp = *head;
+    *head = (*head)->next;
+    free(temp);
+    return;
+  }
+
+  while (n->next != NULL && strcmp(n->next->livro.Titulo, var) != 0) {
+    n = n->next;
+  }
+
+  if (n->next == NULL) {
+    printf("Livro não encontrado.\n");
+    return;
+  }
+
+  temp = n->next;
+  n->next = n->next->next;
+  free(temp);
 }
 
 Livro GetLivro(){

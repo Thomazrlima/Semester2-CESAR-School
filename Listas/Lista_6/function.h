@@ -13,6 +13,7 @@ struct node *next;
 };
 
 Livro adicionar(struct node **head, Livro livro, char *var);
+Livro deletar(struct node *head, int var);
 Livro GetLivro();
 void PrintLivro(Livro livro);
 
