@@ -13,10 +13,10 @@ struct node *next;
 };
 
 int Menu(void);
-int Caminho(int escolha, Livro livro);
-Livro adicionar(struct node **head, Livro livro, char *var);
-Livro deletar(struct node *head, int var);
-Livro GetLivro();
-void PrintLivro(Livro livro);
+void Caminho(int escolha, struct node **head);
+struct node* adicionar(struct node **head, Livro livro, char *var);
+void deletar(struct node **head, char *var);
+Livro GetLivro(void);
+void PrintLivro(struct node *head);
 
 #endif
