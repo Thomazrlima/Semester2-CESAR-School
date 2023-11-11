@@ -7,6 +7,10 @@ int main(void) {
   Livro livro;
   char resp;
   FILE *fptr;
+  int escolha;
+  
+  escolha = Menu();
+  Caminho(escolha, livro);
 
   fptr = fopen("livros.dat", "ab+");
   if(fptr == NULL){
@@ -17,22 +21,11 @@ int main(void) {
       if(fwrite(&livro,sizeof(Livro),1,fptr)!=1){
         break;
       }
+      
       printf("Mais um livro (s/n)? ");
       scanf(" %c",&resp);
     }while(resp != 'n' && resp !='N');
   }
-
-  fflush(fptr);
-  fseek(fptr,0,0);
-
-  puts("\n\nLISTA DE LIVROS DO ARQUIVO ");
-  puts("==================================");
-
-  while(fread(&livro,sizeof(Livro),1,fptr) == 1){
-    PrintLivro(livro);
-  }
-  fclose(fptr);
-  system("pause");
   
   return 0;
 }

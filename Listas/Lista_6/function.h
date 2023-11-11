@@ -12,6 +12,8 @@ Livro livro;
 struct node *next;
 };
 
+int Menu(void);
+int Caminho(int escolha, Livro livro);
 Livro adicionar(struct node **head, Livro livro, char *var);
 Livro deletar(struct node *head, int var);
 Livro GetLivro();

@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-
 Livro adicionar(struct node **head, Livro livro, char *var) {
   struct node *n = *head;
   struct node *novo = (struct node *)malloc(sizeof(struct node));
@@ -28,7 +27,7 @@ Livro adicionar(struct node **head, Livro livro, char *var) {
 }
 
 
-Livro deletar(struct node **head, char *var) {
+/*Livro deletar(struct node **head, char *var) {
   struct node *n = *head;
   struct node *temp;
 
@@ -56,7 +55,7 @@ Livro deletar(struct node **head, char *var) {
   temp = n->next;
   n->next = n->next->next;
   free(temp);
-}
+}*/
 
 Livro GetLivro(){
   Livro livro;
@@ -74,8 +73,19 @@ Livro GetLivro(){
 }
 
 void PrintLivro(Livro livro){
-  printf("\n\tTitulo: %s\n", livro.Titulo);
-  printf("\tAutor: %s\n", livro.Autor);
-  printf("\tNo.Reg: %d\n", livro.NumReg);
-  printf("\tPreco: %.2lf\n", livro.Preco);
+  FILE *fptr;
+  fflush(fptr);
+  fseek(fptr,0,0);
+
+  puts("\n\nLISTA DE LIVROS DO ARQUIVO ");
+  puts("==================================");
+
+  while(fread(&livro,sizeof(Livro),1,fptr) == 1){
+    printf("\n\tTitulo: %s\n", livro.Titulo);
+    printf("\tAutor: %s\n", livro.Autor);
+    printf("\tNo.Reg: %d\n", livro.NumReg);
+    printf("\tPreco: %.2lf\n", livro.Preco);
+    }
+    fclose(fptr);
+    system("pause");
 }
