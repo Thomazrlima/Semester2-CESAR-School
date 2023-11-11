@@ -32,35 +32,24 @@ struct node* adicionar(struct node **head, Livro livro, char *var) {
     fclose(fptr);
 }
 
-/*Livro deletar(struct node **head, char *var) {
-  struct node *n = *head;
-  struct node *temp;
-
-  if (*head == NULL) {
-    printf("Lista vazia.\n");
-    return;
-  }
-
-  if (strcmp((*head)->livro.Titulo, var) == 0) {
-    temp = *head;
-    *head = (*head)->next;
-    free(temp);
-    return;
-  }
-
-  while (n->next != NULL && strcmp(n->next->livro.Titulo, var) != 0) {
-    n = n->next;
-  }
-
-  if (n->next == NULL) {
-    printf("Livro não encontrado.\n");
-    return;
-  }
-
-  temp = n->next;
-  n->next = n->next->next;
-  free(temp);
-}*/
+void deletar(struct node **head, char *var) {
+    struct node *n = *head;
+    struct node *prev = NULL;
+    while (n != NULL && strcmp(n->livro.Titulo, var) != 0) {
+        prev = n;
+        n = n->next;
+    }
+    if (n == NULL) {
+        printf("Livro não encontrado.\n");
+        return;
+    }
+    if (prev == NULL) {
+        *head = n->next;
+    } else {
+        prev->next = n->next;
+    }
+    free(n);
+}
 
 void PrintLivro() {
   FILE *fptr = fopen("livros.dat", "rb");

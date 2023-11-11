@@ -22,13 +22,14 @@ void Caminho(int escolha, struct node **head) {
     switch (escolha) {
         case 1:
           
-            printf("\n\tDigite o titulo: ");
+            printf("\nDigite o titulo: ");
+            getchar();
             fgets(livro.Titulo, 50, stdin);
-            printf("\n\tDigite o nome do autor: ");
+            printf("\nDigite o nome do autor: ");
             fgets(livro.Autor, 50, stdin);
-            printf("\n\tDigite o numr do registro: ");
+            printf("\nDigite o número do registro: ");
             scanf("%d", &livro.NumReg);
-            printf("\n\tDigite o preco do livro: ");
+            printf("\nDigite o preco do livro: ");
             scanf("%lf", &livro.Preco);
             rewind(stdin);
 
@@ -36,8 +37,18 @@ void Caminho(int escolha, struct node **head) {
             break;
 
         case 2:
+          
             PrintLivro(*head);
             break;
+
+        case 4:
+          
+            printf("\nDigite o titulo do livro a ser excluido: ");
+            char excluir[50];
+            getchar();
+            fgets(excluir, 50, stdin);
+            printf("Livro a ser excluído: %s", excluir);
+            deletar(head, excluir);
 
         case 5:
             exit(0);
