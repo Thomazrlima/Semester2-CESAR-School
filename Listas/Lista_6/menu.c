@@ -10,7 +10,8 @@ int Menu(void) {
     printf("2 - Listar livros\n");
     printf("3 - Editar livro\n");
     printf("4 - Excluir livro\n");
-    printf("5 - Finalizar\n");
+    printf("5 - Salvar\n");
+    printf("6 - Finalizar\n");
     printf("Opcao: ");
     scanf("%d", &escolha);
     return escolha;
@@ -33,12 +34,12 @@ void Caminho(int escolha, struct node **head) {
             scanf("%lf", &livro.Preco);
             rewind(stdin);
 
-            *head = adicionar(head, livro, livro.Titulo);
+            *head = adicionar(&head, livro, livro.Titulo);
             break;
 
         case 2:
           
-            PrintLivro(*head);
+            PrintLivro(head);
             break;
 
         case 3:
@@ -47,7 +48,7 @@ void Caminho(int escolha, struct node **head) {
             char var[50];
             getchar();
             fgets(var, 50, stdin);
-            editar(head, var);
+            editar(&head, var);
             break;
       
         case 4:
@@ -57,9 +58,12 @@ void Caminho(int escolha, struct node **head) {
             getchar();
             fgets(excluir, 50, stdin);
             printf("Livro a ser excluído: %s", excluir);
-            deletar(head, excluir);
+            deletar(&head, excluir);
 
         case 5:
+            salvar(&head);
+        
+        case 6:
             exit(0);
 
         default:
