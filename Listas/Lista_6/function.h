@@ -7,14 +7,15 @@ typedef struct {
   double Preco;
 } Livro;
 
-struct node{
-Livro livro;
-struct node *next;
+struct node {
+  Livro livro;
+  struct node *next;
 };
 
 int Menu(void);
 void Caminho(int escolha, struct node **head);
-struct node* adicionar(struct node **head, Livro livro, char *var);
+struct node *adicionar(struct node **head, Livro livro, char *var);
+void editar(struct node **head, char *var);
 void deletar(struct node **head, char *var);
 void PrintLivro(struct node *head);
 

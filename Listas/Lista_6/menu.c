@@ -8,7 +8,7 @@ int Menu(void) {
     printf("O que você deseja fazer?\n");
     printf("1 - Cadastrar livro\n");
     printf("2 - Listar livros\n");
-    printf("3 - Buscar livro\n");
+    printf("3 - Editar livro\n");
     printf("4 - Excluir livro\n");
     printf("5 - Finalizar\n");
     printf("Opcao: ");
@@ -41,6 +41,15 @@ void Caminho(int escolha, struct node **head) {
             PrintLivro(*head);
             break;
 
+        case 3:
+  
+            printf("Digite o titulo do livro que deseja buscar: ");
+            char var[50];
+            getchar();
+            fgets(var, 50, stdin);
+            editar(head, var);
+            break;
+      
         case 4:
           
             printf("\nDigite o titulo do livro a ser excluido: ");
