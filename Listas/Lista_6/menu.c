@@ -32,9 +32,10 @@ void Caminho(int escolha, struct node **head) {
             scanf("%d", &livro.NumReg);
             printf("\nDigite o preco do livro: ");
             scanf("%lf", &livro.Preco);
+            printf("\n");
             rewind(stdin);
 
-            *head = adicionar(&head, livro, livro.Titulo);
+            *head = adicionar(head, livro, livro.Titulo);
             break;
 
         case 2:
@@ -59,9 +60,11 @@ void Caminho(int escolha, struct node **head) {
             fgets(excluir, 50, stdin);
             printf("Livro a ser excluído: %s", excluir);
             deletar(&head, excluir);
+            break;
 
         case 5:
-            salvar(&head);
+            salvar(head);
+            break;
         
         case 6:
             exit(0);

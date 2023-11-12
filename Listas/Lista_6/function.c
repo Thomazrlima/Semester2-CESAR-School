@@ -6,7 +6,7 @@
 struct node* adicionar(struct node **head, Livro livro, char *var) {
     struct node *n = *head;
     struct node *novo = (struct node *)malloc(sizeof(struct node));
-    strcpy(novo->livro.Titulo, var);
+    novo->livro = livro;
 
     if (*head == NULL) {
         *head = novo;
@@ -44,13 +44,14 @@ void PrintLivro() {
   Livro livro;
 
   while (fread(&livro, sizeof(Livro), 1, fptr) == 1) {
-    printf("\n\tTitulo: %s\n", livro.Titulo);
+    printf("\nTitulo: %s\n", livro.Titulo);
     printf("\tAutor: %s\n", livro.Autor);
     printf("\tNo.Reg: %d\n", livro.NumReg);
     printf("\tPreco: %.2lf\n", livro.Preco);
   }
 
   fclose(fptr);
+  printf("\n");
 }
 
 void editar(struct node **head, char *var){
@@ -82,23 +83,25 @@ void editar(struct node **head, char *var){
 }
 
 void salvar(struct node **head){
-    struct node *n = head;
+    struct node *n = *head;
     Livro livro;
     FILE *fptr;
 
     fptr = fopen("livros.dat", "wb+");
     if (fptr == NULL) {
-      exit(1);
+        printf("Erro ao abrir o arquivo.\n");
+        exit(1);
     } else {
-      while(n != NULL){
-      livro = n->livro;
-      if (fwrite(&livro, sizeof(Livro), 1, fptr) != 1) {
-        break;
-      }
-      n = n->next;
+        while (n != NULL) {
+            livro = n->livro;
+            if (fwrite(&livro, sizeof(Livro), 1, fptr) != 1) {
+                printf("Erro ao escrever no arquivo.\n");
+                break;
+            }
+            n = n->next;
+        }
+        fclose(fptr);
     }
-    fclose(fptr);
-  }
 }
 
 void deletar(struct node **head, char *var) {
