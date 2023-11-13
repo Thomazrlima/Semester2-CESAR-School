@@ -15,7 +15,7 @@ struct node {
 int Menu(void);
 void Caminho(int escolha, struct node **head);
 void PrintLivro(struct node *head);
-struct node *adicionar(struct node **head, Livro livro, char *var);
+struct node adicionar(struct node **head, Livro livro, char *var);
 void editar(struct node **head, char *var);
 void salvar(struct node **head);
 void deletar(struct node **head, char *var);

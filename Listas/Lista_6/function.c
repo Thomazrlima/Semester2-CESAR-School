@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-struct node* adicionar(struct node **head, Livro livro, char *var) {
+struct node adicionar(struct node **head, Livro livro, char *var) {
     struct node *n = *head;
     struct node *novo = (struct node *)malloc(sizeof(struct node));
     novo->livro = livro;
@@ -82,44 +82,59 @@ void editar(struct node **head, char *var){
   printf("Livro editado com sucesso.\n");
 }
 
-void salvar(struct node **head){
+void salvar(struct node **head) {
     struct node *n = *head;
     Livro livro;
     FILE *fptr;
 
-    fptr = fopen("livros.dat", "wb+");
+    fptr = fopen("livros.dat", "ab+");
     if (fptr == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
+      
     } else {
-        while (n != NULL) {
-            livro = n->livro;
-            if (fwrite(&livro, sizeof(Livro), 1, fptr) != 1) {
-                printf("Erro ao escrever no arquivo.\n");
-                break;
-            }
-            n = n->next;
-        }
-        fclose(fptr);
+        fseek(fptr, 0, SEEK_END);
+
+      while (n != NULL) {
+      livro = n->livro;
+        
+      if (fwrite(&livro, sizeof(Livro), 1, fptr) != 1) {
+        printf("Erro ao escrever no arquivo.\n");
+        break;
+      }
+          
+      struct node *temp = n;
+        n = n->next;
+        free(temp);
+      }
+
+      *head = NULL;
+      fclose(fptr);
     }
 }
 
 void deletar(struct node **head, char *var) {
     struct node *n = *head;
-    struct node *prev = NULL;
-    while (n != NULL && strcasecmp(n->livro.Titulo, var) != 0) {
-        prev = n;
-        n = n->next;
-    }
-    if (n == NULL) {
-        printf("Livro não encontrado. Título procurado: %s\n", var);
+    struct node *temp;
+
+    if (n != NULL && strcmp(n->livro.Titulo, var) == 0) {
+        *head = n->next;
+        free(n);
         return;
     }
-    printf("Livro encontrado. Título: %s\n", n->livro.Titulo);
-    if (prev == NULL) {
-        *head = n->next;
-    } else {
-        prev->next = n->next;
+
+    while (n->next != NULL && strcmp(n->next->livro.Titulo, var) != 0) {
+        n = n->next;
     }
-    free(n);
+
+    if (n->next == NULL) {
+        printf("Livro não encontrado.\n");
+        return;
+    }
+
+    temp = n->next;
+    n->next = n->next->next;
+    free(temp);
+
+    printf("Livro %s excluído com sucesso.\n", var);
 }
