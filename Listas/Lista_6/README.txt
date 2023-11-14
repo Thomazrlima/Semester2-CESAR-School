@@ -34,6 +34,12 @@ Salva todos os livros da lsita encadeada no .dat
 7-Finalizar
 Finaliza a execução do Programa
 
+Arquivos:
+Menu.c - Menu
+Funcions.c - Funções
+Funcions.h - Declaração das Funções
+Main.c - Chamar o Menu
+
 Alterações Realizadas no Código Original
 Adição de um Menu (localizado em menu.c), que lista opções de ações para o usuário por meio de um switch case.
 Adição da função "adicionar" que salva os inputs em uma lista encadeada e os organiza em ordem alfabética.

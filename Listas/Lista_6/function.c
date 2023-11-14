@@ -90,7 +90,7 @@ void pesquisar(char *var2) {
   }
 
 
-void editar(struct node **head, char *var){
+/*void editar(struct node **head, char *var){
   struct node *n = *head;
   while (n != NULL && strcasecmp(n->livro.Titulo, var) !=
      0) {
@@ -116,7 +116,7 @@ void editar(struct node **head, char *var){
   fwrite(&n->livro, sizeof(Livro), 1, fptr);
   fclose(fptr);
   printf("Livro editado com sucesso.\n");
-}
+}*/
 
 void salvar(struct node **head) {
     struct node *n = *head;
