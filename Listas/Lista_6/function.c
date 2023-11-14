@@ -30,7 +30,7 @@ struct node adicionar(struct node **head, Livro livro, char *var) {
     }
 }
 
-void PrintLivro() {
+void listar() {
   FILE *fptr = fopen("livros.dat", "rb");
 
   if (fptr == NULL) {
@@ -52,6 +52,32 @@ void PrintLivro() {
 
   fclose(fptr);
   printf("\n");
+}
+
+void pesquisar(char *var2) {
+    FILE *fptr = fopen("livros.dat", "rb");
+
+    if (fptr == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    Livro livro;
+
+    while (fread(&livro, sizeof(Livro), 1, fptr) == 1) {
+        if (strcmp(livro.Titulo, var2) == 0) {
+            printf("\nLivro encontrado!\n");
+            printf("Titulo: %s\n", livro.Titulo);
+            printf("Autor: %s\n", livro.Autor);
+            printf("No.Reg: %d\n", livro.NumReg);
+            printf("Preco: %.2lf\n", livro.Preco);
+            fclose(fptr);
+            return;
+        }
+    }
+
+    fclose(fptr);
+    printf("\nLivro não encontrado!\n");
 }
 
 void editar(struct node **head, char *var){
@@ -91,18 +117,18 @@ void salvar(struct node **head) {
     if (fptr == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
-      
+
     } else {
         fseek(fptr, 0, SEEK_END);
 
       while (n != NULL) {
       livro = n->livro;
-        
+
       if (fwrite(&livro, sizeof(Livro), 1, fptr) != 1) {
         printf("Erro ao escrever no arquivo.\n");
         break;
       }
-          
+
       struct node *temp = n;
         n = n->next;
         free(temp);
@@ -123,18 +149,18 @@ void deletar(struct node **head, char *var) {
         return;
     }
 
-    while (n != NULL && strcmp(n->next->livro.Titulo, var) != 0) {
+    while (n->next != NULL && strcmp(n->next->livro.Titulo, var) != 0) {
         n = n->next;
     }
 
-    if (n == NULL) {
+    if (n->next == NULL) {
         printf("Livro não encontrado.\n");
         return;
     }
 
-    printf("Livro %s excluído com sucesso.\n", var);
     temp = n->next;
     n->next = n->next->next;
     free(temp);
 
+    printf("Livro %s excluído com sucesso.\n", var);
 }
