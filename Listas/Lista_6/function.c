@@ -123,18 +123,18 @@ void deletar(struct node **head, char *var) {
         return;
     }
 
-    while (n->next != NULL && strcmp(n->next->livro.Titulo, var) != 0) {
+    while (n != NULL && strcmp(n->next->livro.Titulo, var) != 0) {
         n = n->next;
     }
 
-    if (n->next == NULL) {
+    if (n == NULL) {
         printf("Livro não encontrado.\n");
         return;
     }
 
+    printf("Livro %s excluído com sucesso.\n", var);
     temp = n->next;
     n->next = n->next->next;
     free(temp);
 
-    printf("Livro %s excluído com sucesso.\n", var);
 }
