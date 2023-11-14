@@ -30,7 +30,7 @@ struct node adicionar(struct node **head, Livro livro, char *var) {
     }
 }
 
-void PrintLivro() {
+void listar(struct node *head) {
   FILE *fptr = fopen("livros.dat", "rb");
 
   if (fptr == NULL) {
@@ -38,7 +38,7 @@ void PrintLivro() {
     return;
   }
 
-  puts("\n\nLISTA DE LIVROS DO ARQUIVO ");
+  puts("\n\nLISTA DE LIVROS SALVOS ");
   puts("==================================");
 
   Livro livro;
@@ -52,7 +52,43 @@ void PrintLivro() {
 
   fclose(fptr);
   printf("\n");
+
+  if (head == NULL) {
+    printf("\nNenhum livro não salvo na lista encadeada.\n");
+    return;
+  }
+  
 }
+
+void pesquisar(char *var2) {
+    FILE *fptr = fopen("livros.dat", "rb");
+
+    if (fptr == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+      Livro livro;
+
+      while (fread(&livro, sizeof(Livro), 1, fptr) == 1) {
+          livro.Titulo[strcspn(livro.Titulo, "\n")] = '\0';
+
+          if (strcasecmp(livro.Titulo, var2) == 0) {
+              printf("\nLivro encontrado!\n");
+              printf("Titulo: %s\n", livro.Titulo);
+              printf("Autor: %s\n", livro.Autor);
+              printf("No.Reg: %d\n", livro.NumReg);
+              printf("Preco: %.2lf\n", livro.Preco);
+              printf("\n");
+              fclose(fptr);
+              return;
+          }
+      }
+
+      fclose(fptr);
+      printf("\nLivro não encontrado!\n");
+  }
+
 
 void editar(struct node **head, char *var){
   struct node *n = *head;
@@ -91,18 +127,18 @@ void salvar(struct node **head) {
     if (fptr == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
-      
+
     } else {
         fseek(fptr, 0, SEEK_END);
 
       while (n != NULL) {
       livro = n->livro;
-        
+
       if (fwrite(&livro, sizeof(Livro), 1, fptr) != 1) {
         printf("Erro ao escrever no arquivo.\n");
         break;
       }
-          
+
       struct node *temp = n;
         n = n->next;
         free(temp);
