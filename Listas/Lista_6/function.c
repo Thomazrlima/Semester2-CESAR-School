@@ -30,11 +30,7 @@ struct node adicionar(struct node **head, Livro livro, char *var) {
     }
 }
 
-<<<<<<< HEAD
-void listar() {
-=======
 void listar(struct node *head) {
->>>>>>> 12175c2e6809c957a72886ca9d85a6db6556300f
   FILE *fptr = fopen("livros.dat", "rb");
 
   if (fptr == NULL) {
@@ -72,27 +68,6 @@ void pesquisar(char *var2) {
         return;
     }
 
-<<<<<<< HEAD
-    Livro livro;
-
-    while (fread(&livro, sizeof(Livro), 1, fptr) == 1) {
-        if (strcmp(livro.Titulo, var2) == 0) {
-            printf("\nLivro encontrado!\n");
-            printf("Titulo: %s\n", livro.Titulo);
-            printf("Autor: %s\n", livro.Autor);
-            printf("No.Reg: %d\n", livro.NumReg);
-            printf("Preco: %.2lf\n", livro.Preco);
-            fclose(fptr);
-            return;
-        }
-    }
-
-    fclose(fptr);
-    printf("\nLivro não encontrado!\n");
-}
-
-void editar(struct node **head, char *var){
-=======
       Livro livro;
 
       while (fread(&livro, sizeof(Livro), 1, fptr) == 1) {
@@ -116,7 +91,6 @@ void editar(struct node **head, char *var){
 
 
 /*void editar(struct node **head, char *var){
->>>>>>> 12175c2e6809c957a72886ca9d85a6db6556300f
   struct node *n = *head;
   while (n != NULL && strcasecmp(n->livro.Titulo, var) !=
      0) {
