@@ -30,7 +30,11 @@ struct node adicionar(struct node **head, Livro livro, char *var) {
     }
 }
 
+<<<<<<< HEAD
 void listar() {
+=======
+void listar(struct node *head) {
+>>>>>>> 12175c2e6809c957a72886ca9d85a6db6556300f
   FILE *fptr = fopen("livros.dat", "rb");
 
   if (fptr == NULL) {
@@ -38,7 +42,7 @@ void listar() {
     return;
   }
 
-  puts("\n\nLISTA DE LIVROS DO ARQUIVO ");
+  puts("\n\nLISTA DE LIVROS SALVOS ");
   puts("==================================");
 
   Livro livro;
@@ -52,6 +56,12 @@ void listar() {
 
   fclose(fptr);
   printf("\n");
+
+  if (head == NULL) {
+    printf("\nNenhum livro não salvo na lista encadeada.\n");
+    return;
+  }
+  
 }
 
 void pesquisar(char *var2) {
@@ -62,6 +72,7 @@ void pesquisar(char *var2) {
         return;
     }
 
+<<<<<<< HEAD
     Livro livro;
 
     while (fread(&livro, sizeof(Livro), 1, fptr) == 1) {
@@ -81,6 +92,31 @@ void pesquisar(char *var2) {
 }
 
 void editar(struct node **head, char *var){
+=======
+      Livro livro;
+
+      while (fread(&livro, sizeof(Livro), 1, fptr) == 1) {
+          livro.Titulo[strcspn(livro.Titulo, "\n")] = '\0';
+
+          if (strcasecmp(livro.Titulo, var2) == 0) {
+              printf("\nLivro encontrado!\n");
+              printf("Titulo: %s\n", livro.Titulo);
+              printf("Autor: %s\n", livro.Autor);
+              printf("No.Reg: %d\n", livro.NumReg);
+              printf("Preco: %.2lf\n", livro.Preco);
+              printf("\n");
+              fclose(fptr);
+              return;
+          }
+      }
+
+      fclose(fptr);
+      printf("\nLivro não encontrado!\n");
+  }
+
+
+/*void editar(struct node **head, char *var){
+>>>>>>> 12175c2e6809c957a72886ca9d85a6db6556300f
   struct node *n = *head;
   while (n != NULL && strcasecmp(n->livro.Titulo, var) !=
      0) {
@@ -106,7 +142,7 @@ void editar(struct node **head, char *var){
   fwrite(&n->livro, sizeof(Livro), 1, fptr);
   fclose(fptr);
   printf("Livro editado com sucesso.\n");
-}
+}*/
 
 void salvar(struct node **head) {
     struct node *n = *head;

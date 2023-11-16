@@ -44,13 +44,23 @@ void Caminho(int escolha, struct node **head) {
             listar(head);
             break;
 
+<<<<<<< HEAD
         case 3:
 
             printf("Digite o titulo do livro que deseja buscar: ");
+=======
+        /*case 3:
+
+            printf("Digite o titulo do livro que deseja editar: ");
+>>>>>>> 12175c2e6809c957a72886ca9d85a6db6556300f
             char var[50];
             getchar();
             fgets(var, 50, stdin);
             editar(head, var);
+            break;*/
+
+        case 3:
+            printf("Função Indisponível\n");
             break;
 
         case 4:
